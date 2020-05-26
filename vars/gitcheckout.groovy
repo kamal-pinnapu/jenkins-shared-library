@@ -2,10 +2,10 @@ def call(Map stageparams)
 {
 checkout([
     $class: 'GitSCM', 
-    branches: [[name: env.GIT_BRANCH]], 
+    branches: [[name:  stageParams.branch]], 
     doGenerateSubmoduleConfigurations: false, 
     extensions: [], 
     submoduleCfg: [], 
-    userRemoteConfigs: [[url: 'env.GIT_URL']]
+    userRemoteConfigs: [[url: stageParams.url]]
     ])
 }
