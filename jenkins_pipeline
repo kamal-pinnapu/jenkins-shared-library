@@ -29,6 +29,7 @@ pipeline{
         stage("deploy") {
             steps{
                 echo "deploy success"
+                echo "deploy version ${params.VERSION}"
             }
         }
     }
