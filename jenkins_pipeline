@@ -1,4 +1,6 @@
-pipeline{
+def gv
+
+pipeline { 
     agent any
     parameters {
         choice(name: 'VERSION', choices: ['1.1.0', '1.2.0', '1.3.0'], description: '')
@@ -6,6 +8,13 @@ pipeline{
     }
 
     stages{
+        stage("init") {
+            steps {
+                script {
+                    gv = load "jenkins.groovy"
+                }
+            }
+        }
         stage("checkout") {
             steps{
                 echo "checkout successful"
@@ -13,7 +22,9 @@ pipeline{
         }
         stage("build") {
             steps{
-                echo "build stage successful"
+                script {
+                    gv.buildApp()
+                }
             }
         }
         stage("test") {
@@ -23,13 +34,16 @@ pipeline{
                 }
             }
             steps{
-            echo "test succesful"
+                script {
+                    gv.testApp()
+                }
             }
         }
         stage("deploy") {
             steps{
-                echo "deploy success"
-                echo "deploy version ${params.VERSION}"
+                script {
+                    gv.deployApp()
+                }
             }
         }
     }
