@@ -1,0 +1,26 @@
+pipeline{
+    agent any
+
+    stages{
+        stage("checkout"){
+            steps{
+                echo "checkout successful"
+            }
+        }
+        stage("build"){
+            steps{
+                echo "build stage successful"
+            }
+        }
+        stage("test"){
+            steps{
+            echo "test succesful"
+            }
+        }
+        stage("deploy"){
+            steps{
+                echo "deploy success"
+            }
+        }
+    }
+}
